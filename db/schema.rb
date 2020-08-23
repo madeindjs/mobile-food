@@ -10,9 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_08_23_180027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.datetime "date"
+    t.string "city"
+    t.bigint "client_id", null: false
+    t.bigint "chosen_partner_id", null: false
+    t.integer "guest_quantity"
+    t.integer "budget_per_guest"
+    t.string "food_type"
+    t.string "requested_quotes_partners"
+    t.boolean "has_electricity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chosen_partner_id"], name: "index_bookings_on_chosen_partner_id"
+    t.index ["client_id"], name: "index_bookings_on_client_id"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "company"
+    t.string "email"
+    t.string "phone_number"
+    t.text "comment"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "partners", force: :cascade do |t|
+    t.string "food_type"
+    t.string "company_name"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address"
+    t.string "phone_number"
+    t.string "email"
+    t.string "picture_url"
+    t.text "description"
+    t.integer "min_guest"
+    t.text "comment"
+    t.integer "review"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end
