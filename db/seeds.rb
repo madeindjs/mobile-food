@@ -5,7 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 require 'faker'
+
+puts "Destroy all"
+Partner.destroy_all
+Client.destroy_all
+Booking.destroy_all
 
 puts 'Creating 50 fake partners...'
 50.times do
@@ -27,7 +33,6 @@ puts 'Creating 50 fake partners...'
 end
 puts 'Finished!'
 
-
 puts 'Creating 50 fake clients...'
 50.times do
   client = Client.new(
@@ -41,4 +46,22 @@ puts 'Creating 50 fake clients...'
   )
   client.save!
 end
+
+puts 'Finished!'
+
+puts 'Creating 50 fake bookings...'
+  50.times do
+    booking = Booking.new(
+      date: Faker::Time.forward(days: 23, period: :morning),
+      city:Faker::Address.city,
+      guest_quantity:rand(10..250),
+      budget_per_guest:rand(10..50),
+      food_type: Faker::Restaurant.type,
+      has_electricity: Faker::Boolean.boolean,
+      chosen_partner_id: Partner.all.sample,
+      client_id: Client.all.sample
+    )
+    booking.save!
+  end
+
 puts 'Finished!'
