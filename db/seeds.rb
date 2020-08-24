@@ -58,8 +58,8 @@ puts 'Creating 50 fake bookings...'
       budget_per_guest:rand(10..50),
       food_type: Faker::Restaurant.type,
       has_electricity: Faker::Boolean.boolean,
-      chosen_partner_id: Partner.all.sample,
-      client_id: Client.all.sample
+      chosen_partner_id: Partner.last.id,
+      client_id: Client.last.id
     )
     booking.save!
   end
