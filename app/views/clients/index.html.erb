@@ -1,6 +1,29 @@
 <h1>Clients</h1>
-<ul class="list-group">
+<!-- <ul class="list-group">
   <% @clients.each do |client| %>
     <li class="list-group-item"><%= client.first_name %> <%= client.last_name %></li>
   <% end %>
-</ul>
+</ul> -->
+
+<%= grid(@clients_grid) do |g|
+
+  g.column do |client|
+    client.first_name
+  end
+
+  g.column  do |client|
+    client.last_name
+  end
+
+  g.column do |client|
+    client.status
+  end
+
+  # g.column do |client|
+  #   client.archived? ? 'Yes' : 'No'
+  # end
+
+  g.column do |client|
+    link_to('Edit', edit_client_path(client))
+  end
+end -%>
