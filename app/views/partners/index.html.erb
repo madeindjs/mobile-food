@@ -1,6 +1,27 @@
-<h1>Partners</h1>
-<ul class="list-group">
-  <% @partners.each do |partner| %>
-    <li class="list-group-item"><%= partner.company_name %></li>
-  <% end %>
-</ul>
+<div class="container-fluid">
+  <h1>Partners</h1>
+
+  <%= grid(@partners_grid) do |g|
+
+  g.column name:  'Name', filter: false, attribute: 'company_name' do |partner|
+    partner.company_name
+  end
+
+  g.column name:  'Food type', filter: false, attribute: 'food_type'  do |partner|
+    partner.first_name
+  end
+
+  g.column name:  'Phone Number', filter: false, attribute: 'phone_number' do |partner|
+    partner.phone_number
+  end
+
+g.column  name:  'E-mail', filter: false, attribute: 'email' do |partner|
+    partner.email
+  end
+
+  g.column   do |partner|
+    link_to('Edit', edit_partner_path(partner))
+  end
+end -%>
+
+  </div>
