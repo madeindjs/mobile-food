@@ -2,9 +2,10 @@ class ClientsController < ApplicationController
 before_action :set_client, only:[:show, :destroy, :edit, :update]
 
   def index
-    @clients = Client.all
-    @clients_grid = initialize_grid(Client)
-
+    @clients_grid = initialize_grid(Client,
+      order:           'clients.last_name',
+      order_direction: 'desc'
+      )
   end
 
   def new
