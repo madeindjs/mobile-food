@@ -1,29 +1,16 @@
-<h1>Clients</h1>
-<!-- <ul class="list-group">
-  <% @clients.each do |client| %>
-    <li class="list-group-item"><%= client.first_name %> <%= client.last_name %></li>
-  <% end %>
-</ul> -->
+<div class="container-fluid">
+  <h1>Clients</h1>
+  <%= grid(@clients_grid) do |g|
+    g.column name: 'Last Name', attribute: 'last_name'
+    g.column name: 'First Name', attribute: 'first_name'
+    g.column name: 'Phone number', attribute: 'phone_number'
+    g.column name: 'E-mail', attribute: 'email'
+    g.column name: 'Status', attribute: 'status'
 
-<%= grid(@clients_grid) do |g|
+    g.column  do |client|
+        link_to('Edit', edit_client_path(client))
+      end
 
-  g.column do |client|
-    client.first_name
-  end
+  end %>
 
-  g.column  do |client|
-    client.last_name
-  end
-
-  g.column do |client|
-    client.status
-  end
-
-  # g.column do |client|
-  #   client.archived? ? 'Yes' : 'No'
-  # end
-
-  g.column do |client|
-    link_to('Edit', edit_client_path(client))
-  end
-end -%>
+  </div>
