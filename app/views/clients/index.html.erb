@@ -1,7 +1,9 @@
 <div class="container-fluid">
   <h1>Clients</h1>
-  <h2>Create new client</h2>
-  <%=  %>
+  <%= link_to new_client_path do %>
+          <br>
+            <h2>Create new client</h2>
+            <% end %>
 
   <%= grid(@clients_grid) do |g|
 

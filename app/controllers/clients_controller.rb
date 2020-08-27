@@ -9,10 +9,17 @@ class ClientsController < ApplicationController
   end
 
   def new
+    @client = Client.new
   end
 
   def create
-    @client = Client.new
+    @client = Client.new(client_params)
+    if @client.save!
+      redirect_to clients_path
+    else
+      flash[:alert] = "Client rejected"
+      render 'new'
+    end
   end
 
   def show
@@ -22,6 +29,11 @@ class ClientsController < ApplicationController
   def edit
   end
 
+  def update
+    @client.update(client_params)
+    redirect_to clients_path
+  end
+
   def destroy
     @client.destroy
     redirect_to clients_path
@@ -29,5 +41,9 @@ class ClientsController < ApplicationController
 
   def set_client
     @client = Client.find(params[:id])
+  end
+
+    def client_params
+    params.require(:client).permit(:first_name, :last_name, :email, :phone_number, :status)
   end
 end
