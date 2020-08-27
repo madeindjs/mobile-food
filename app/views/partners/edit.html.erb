@@ -1,0 +1,19 @@
+<div class="container-fluid">
+<h1> <%= @partner.company_name %></h1>
+<p><%= @partner.company_name %></p>
+<p><%= @partner.first_name %> <%= @partner.last_name %></p>
+<p><%= @partner.address %><%= link_to @partner.gmap_url,target: :_blank do%>
+      <i class="fas fa-map-pin"></i>
+    <% end %></p>
+<p><%= @partner.phone_number %></p>
+<p><%= @partner.email %></p>
+<p><%= @partner.picture_url %></p>
+<p><%= @partner.description %></p>
+<p><%= @partner.min_guest %></p>
+<p><%= @partner.comment %></p>
+<%= link_to partner_path, method: :delete, data: { confirm: "Are you sure?" } do %>
+ <i class="fa fa-trash destroy_dose text-warning text-decoration-none"></i>
+<% end %>
+</div>
+
+

@@ -1,4 +1,9 @@
 <div class="container-fluid">
 <h1> <%= @client.last_name %></h1>
 <p><%= @client.last_name %></p>
+
+
+<%= link_to client_path, method: :delete, data: { confirm: "Are you sure?" } do %>
+ <i class="fa fa-trash destroy_dose text-warning text-decoration-none"></i>
+<% end %>
 </div>
