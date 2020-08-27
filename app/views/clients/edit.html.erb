@@ -1,6 +1,5 @@
 <div class="container-fluid">
-<h1> <%= @client.last_name %></h1>
-<p><%= @client.last_name %></p>
+<%= render "form", client: @client %>
 
 
 <%= link_to client_path, method: :delete, data: { confirm: "Are you sure?" } do %>
