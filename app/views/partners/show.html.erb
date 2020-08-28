@@ -1,0 +1,11 @@
+<div class="container-fluid">
+<h1><%= @partner.company_name %></h1>
+<img src="<%= @partner.picture_url %>" alt="<%= @partner.company_name %>" height="390" width="440">
+<p>Food type:<%= @partner.food_type %></p>
+<p>Owner's name :<%= @partner.first_name %> <%= @partner.last_name %></p>
+<p><%= mail_to @partner.email %></p>
+<p><%= link_to @partner.phone_number, "tel:#{@partner.phone_number}"  %></p>
+<p><%= @partner.description %></p>
+<p>Minimum guests: <%= @partner.min_guest %></p>
+<%= link_to('Edit', edit_partner_path(@partner)) %>
+</div>
