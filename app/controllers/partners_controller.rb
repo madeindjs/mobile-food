@@ -11,6 +11,9 @@ class PartnersController < ApplicationController
   def new
   end
 
+  def show
+  end
+
   def create
     @partner=Partner.new
   end
@@ -18,7 +21,6 @@ class PartnersController < ApplicationController
   def destroy
     @partner.destroy
     redirect_to partners_path
-
   end
 
   def set_partner
