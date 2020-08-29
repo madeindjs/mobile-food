@@ -2,10 +2,10 @@ class PartnersController < ApplicationController
   before_action :set_partner, only:[:show, :destroy, :edit, :update]
 
   def index
-    @partners_grid = initialize_grid(Partner,
-      order:           'partners.company_name',
-      order_direction: 'desc'
-      )
+      @partners_grid = initialize_grid(Partner,
+        order:           'partners.company_name',
+        order_direction: 'desc'
+        )
   end
 
   def new

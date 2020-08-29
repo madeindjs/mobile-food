@@ -26,6 +26,7 @@ require("channels")
 
 // External imports
 import "bootstrap";
+// import('wice_grid')
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
