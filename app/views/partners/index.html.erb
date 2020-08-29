@@ -1,12 +1,9 @@
 <div class="container-fluid">
   <h1>Partners</h1>
   <%= grid(@partners_grid) do |g|
-
     g.column name:  'Name', filter: false, attribute: 'company_name' do |partner|
       link_to(partner.company_name, partner_path(partner))
-
     end
-
     g.column name:  'Food type', filter: false, attribute: 'food_type'  do |partner|
       partner.food_type
     end
@@ -23,5 +20,4 @@
       link_to('Edit', edit_partner_path(partner))
     end
   end -%>
-
   </div>
