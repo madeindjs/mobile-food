@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <h1>bookings</h1>
+  <h1>Bookings</h1>
   <%= link_to new_booking_path do %>
           <br>
             <h2>Create new booking</h2>
@@ -17,15 +17,14 @@
       booking.city
     end
     g.column name:  'Chosen foodtruck', attribute: 'chosen_partner_id', filter: false do |booking|
-      booking.chosen_partner_id
+      Partner.find(booking.chosen_partner_id).company_name
     end
     g.column name:  'Client', attribute: 'client_id', filter: false do |booking|
-      booking.client_id
+      Client.find(booking.client_id).last_name
     end
     g.column  do |booking|
     link_to('Edit', edit_booking_path(booking))
   end
-
 end -%>
 
   </div>
