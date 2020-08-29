@@ -7,16 +7,15 @@
 
   <%= grid(@clients_grid) do |g|
 
-  g.column name:  'Last name', attribute: 'last_name', filter: false do |client|
-    client.last_name
-  end
-
-  g.column name:  'First Name', attribute: 'first_name', filter: false  do |client|
-    client.first_name
+  g.column name:  'Name', attribute: 'last_name', filter: false do |client|
+    link_to(client.last_name, client_path(client))
   end
 
   g.column name:  'Phone Number', attribute: 'phone_number', filter: false do |client|
     client.phone_number
+  end
+  g.column name:  'E-mail', attribute: 'email', filter: false do |client|
+    client.email
   end
 
 g.column  name:  'Status', attribute: 'status', filter: false do |client|
