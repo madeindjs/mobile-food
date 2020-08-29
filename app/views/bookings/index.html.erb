@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <h1>bookings</h1>
+  <%= link_to new_booking_path do %>
+          <br>
+            <h2>Create new booking</h2>
+            <% end %>
+
+  <%= grid(@bookings_grid) do |g|
+
+    g.column name:  'Date', attribute: 'date', filter: false do |booking|
+      link_to(booking.date, booking_path(booking))
+    end
+    g.column name:  'Food type', attribute: 'food_type', filter: false do |booking|
+      booking.food_type
+    end
+    g.column name:  'City', attribute: 'city', filter: false do |booking|
+      booking.city
+    end
+    g.column name:  'Chosen foodtruck', attribute: 'chosen_partner_id', filter: false do |booking|
+      booking.chosen_partner_id
+    end
+    g.column name:  'Client', attribute: 'client_id', filter: false do |booking|
+      booking.client_id
+    end
+    g.column  do |booking|
+    link_to('Edit', edit_booking_path(booking))
+  end
+
+end -%>
+
+  </div>
