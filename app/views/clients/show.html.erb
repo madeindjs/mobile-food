@@ -1,14 +1,22 @@
 <div class="container-fluid">
   <h1> <%= @client.first_name %> <%= @client.last_name %></h1>
-  <p>Company:<%= @client.company%></p>
-  <p><%= @client.email %></p>
+  <h3>Company:</h3>
+  <p><%= @client.company%></p>
+  <h3>E-mail address:</h3>
+  <p><p><%= mail_to @client.email %></p></p>
+  <h3>Phone number:</h3>
   <p><%= @client.phone_number %></p>
-  <p>Comment:<%= @client.comment %></p>
-  <p>Status:<%= @client.status %></p>
+  <h3>Comment:</h3>
+  <p><%= @client.comment %></p>
+  <h3>Status:</h3>
+  <p><%= @client.status %></p>
   <%= link_to edit_client_path(@client)do %>
     <h2 button type="button" class="btn btn-primary">Edit client</h2></button>
   <% end %>
   <%= link_to new_client_booking_path(@client) do %>
     <h2 button type="button" class="btn btn-success">Create new booking</h2></button>
+  <% end %>
+  <%= link_to client_path, method: :delete, data: { confirm: "Are you sure?" } do %>
+    <h2 button type="button" class="btn btn-danger">Delete client</h2></button>
   <% end %>
 </div>
