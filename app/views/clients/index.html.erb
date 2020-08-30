@@ -1,8 +1,7 @@
 <div class="container-fluid">
   <h1>Clients</h1>
   <%= link_to new_client_path do %>
-          <br>
-            <h2>Create new client</h2>
+            <h2 button type="button" class="btn btn-primary m-3">Create new client</h2></button>
             <% end %>
 
   <%= grid(@clients_grid) do |g|

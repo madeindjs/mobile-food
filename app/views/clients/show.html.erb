@@ -1,9 +1,14 @@
 <div class="container-fluid">
-<h1> <%= @client.first_name %> <%= @client.last_name %></h1>
-<p>Company:<%= @client.company%></p>
-<p><%= @client.email %></p>
-<p><%= @client.phone_number %></p>
-<p>Comment:<%= @client.comment %></p>
-<p>Status:<%= @client.status %></p>
-<%= link_to('Edit', edit_client_path(@client)) %>
+  <h1> <%= @client.first_name %> <%= @client.last_name %></h1>
+  <p>Company:<%= @client.company%></p>
+  <p><%= @client.email %></p>
+  <p><%= @client.phone_number %></p>
+  <p>Comment:<%= @client.comment %></p>
+  <p>Status:<%= @client.status %></p>
+  <%= link_to edit_client_path(@client)do %>
+    <h2 button type="button" class="btn btn-primary">Edit client</h2></button>
+  <% end %>
+  <%= link_to new_client_booking_path(@client) do %>
+    <h2 button type="button" class="btn btn-success">Create new booking</h2></button>
+  <% end %>
 </div>

@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <h1>Bookings</h1>
-  <%= link_to new_booking_path do %>
+  <%= link_to new_client_booking_path do %>
           <br>
-            <h2>Create new booking</h2>
+            <h2 button type="button" class="btn btn-primary m-3">Create new booking</h2></button>
             <% end %>
 
   <%= grid(@bookings_grid) do |g|

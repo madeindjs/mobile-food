@@ -1,5 +1,8 @@
 <div class="container-fluid">
   <h1>Partners</h1>
+  <%= link_to new_partner_path do %>
+  <h2 button type="button" class="btn btn-primary m-3">Create new partner</h2></button>
+  <% end %>
   <%= grid(@partners_grid) do |g|
     g.column name:  'Name', filter: false, attribute: 'company_name' do |partner|
       link_to(partner.company_name, partner_path(partner))
