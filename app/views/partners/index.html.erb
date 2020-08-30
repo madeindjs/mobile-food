@@ -1,27 +1,34 @@
 <div class="container-fluid">
   <h1>Partners</h1>
-  <%= link_to new_partner_path do %>
-    <h2 button type="button" class="btn btn-primary m-3">Create new partner</h2></button>
-    <% end %>
-    <%= grid(@partners_grid) do |g|
-      g.column name:  'Name', filter: false, attribute: 'company_name' do |partner|
-        link_to(partner.company_name, partner_path(partner))
-      end
-      g.column name:  'Food type', filter: false, attribute: 'food_type'  do |partner|
-        partner.food_type
-      end
-
-      g.column name:  'Phone Number', filter: false, attribute: 'phone_number' do |partner|
-        partner.phone_number
-      end
-
-      g.column  name:  'E-mail', filter: false, attribute: 'email' do |partner|
-        partner.email
-      end
-
-      g.column do |partner|
-        link_to('Edit', edit_partner_path(partner))
-      end
-    end -%>
+  <div class="form-group pull-right">
+    <input type="text" class="search form-control" placeholder="What you looking for?">
   </div>
+  <span class="counter pull-right"></span>
+  <table class="table table-hover table-bordered results">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th class="col-md-5 col-xs-5">Company</th>
+        <th class="col-md-5 col-xs-5">Name</th>
+        <th class="col-md-4 col-xs-4">Food type</th>
+        <th class="col-md-3 col-xs-3">Address</th>
+      </tr>
+      <tr class="warning no-result">
+        <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @partners.each do |partner| %>
+      <tr>
+        <th scope="row">1</th>
+        <td><%= partner.company_name %></td>
+        <td><%= partner.first_name %> <%= partner.last_name %></td>
+        <td><%= partner.food_type %></td>
+        <td><%= partner.address %></td>
+      </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+</div>
 
