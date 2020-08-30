@@ -14,7 +14,7 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(client_params)
-    if @client.save!
+    if @client.save
       redirect_to clients_path
     else
       flash[:alert] = "Client rejected"

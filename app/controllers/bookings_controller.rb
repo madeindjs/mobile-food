@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    @client = Client.find(params[:client_id])
   end
 
   def index
