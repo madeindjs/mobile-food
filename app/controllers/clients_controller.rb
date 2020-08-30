@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  before_action :set_client, only:[:show, :destroy, :edit, :update]
+  before_action :set_client, only: [:show, :destroy, :edit, :update]
 
   def index
     @clients_grid = initialize_grid(Client,
