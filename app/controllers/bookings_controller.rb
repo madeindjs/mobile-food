@@ -7,10 +7,12 @@ class BookingsController < ApplicationController
   end
 
   def index
-    @bookings_grid = initialize_grid(Booking,
-      order:           'bookings.date',
-      order_direction: 'desc'
-      )
+    if params[:query].present?
+      sql_query = "city ILIKE :query OR client_id ILIKE :query"
+      @partners = Booking.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @bookings = Booking.all
+  end
   end
 
   def create

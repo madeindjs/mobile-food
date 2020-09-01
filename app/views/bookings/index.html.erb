@@ -5,26 +5,43 @@
             <h2 button type="button" class="btn btn-primary m-3">Create new booking</h2></button>
             <% end %>
 
-  <%= grid(@bookings_grid) do |g|
-
-    g.column name:  'Date', attribute: 'date', filter: false do |booking|
-      link_to(booking.date, booking_path(booking))
-    end
-    g.column name:  'Food type', attribute: 'food_type', filter: false do |booking|
-      booking.food_type
-    end
-    g.column name:  'City', attribute: 'city', filter: false do |booking|
-      booking.city
-    end
-    g.column name:  'Chosen foodtruck', attribute: 'chosen_partner_id', filter: false do |booking|
-      Partner.find(booking.chosen_partner_id).company_name
-    end
-    g.column name:  'Client', attribute: 'client_id', filter: false do |booking|
-      Client.find(booking.client_id).last_name
-    end
-    g.column  do |booking|
-    link_to('Edit', edit_booking_path(booking))
-  end
-end -%>
+  <div class="form-group pull-right">
+    <%= form_tag partners_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a movie"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+  </div>
+  <span class="counter pull-right"></span>
+  <table class="table table-hover table-bordered results">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th class="col-md-5 col-xs-5">Date</th>
+        <th class="col-md-5 col-xs-5">City</th>
+        <th class="col-md-4 col-xs-4">Client_id</th>
+        <th class="col-md-3 col-xs-3">Guest Quantity</th>
+      </tr>
+      <tr class="warning no-result">
+        <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @bookings.each_with_index do |partner, index| %>
+        <% indexplusone = index + 1 %>
+        <th scope="row"><%= indexplusone %></th>
+        <td><%= link_to(booking.date, booking_path(booking)) %></td>
+        <td><%= booking.city %></td>
+        <td><%= Client.find(booking.client_id).last_name %></td>
+        <td><%= booking.food_type %></td>
+        
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 
   </div>

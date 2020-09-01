@@ -8,10 +8,6 @@ class PartnersController < ApplicationController
       @partners = Partner.where(sql_query, query: "%#{params[:query]}%")
     else
       @partners = Partner.all
-    # @partners_grid = initialize_grid(Partner,
-    #   order:           'partners.company_name',
-    #   order_direction: 'desc'
-    #   )
   end
   end
 
