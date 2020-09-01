@@ -17,7 +17,8 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     if @client.save
-      redirect_to clients_path
+      flash[:alert] = "Client created"
+      redirect_to client_path(@client)
     else
       flash[:alert] = "Client rejected"
       render 'new'
@@ -45,7 +46,7 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
   end
 
-    def client_params
+  def client_params
     params.require(:client).permit(:first_name, :last_name, :email, :phone_number, :status)
   end
 end

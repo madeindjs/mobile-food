@@ -9,7 +9,7 @@
     <%= form_tag partners_path, method: :get do %>
   <%= text_field_tag :query,
     params[:query],
-    class: "form-control",
+    class: "mx-sm-3 mb-2",
     placeholder: "Find a movie"
   %>
   <%= submit_tag "Search", class: "btn btn-primary" %>
@@ -38,7 +38,7 @@
         <td><%= booking.city %></td>
         <td><%= Client.find(booking.client_id).last_name %></td>
         <td><%= booking.food_type %></td>
-        
+
       </tr>
       <% end %>
     </tbody>
