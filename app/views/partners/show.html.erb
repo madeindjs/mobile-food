@@ -7,5 +7,10 @@
 <p><%= link_to @partner.phone_number, "tel:#{@partner.phone_number}"  %></p>
 <p><%= @partner.description %></p>
 <p>Minimum guests: <%= @partner.min_guest %></p>
-<%= link_to('Edit', edit_partner_path(@partner)) %>
+<%= link_to edit_partner_path(@partner)do %>
+    <h2 button type="button" class="btn btn-primary">Edit partner</h2></button>
+  <% end %>
+<%= link_to partner_path, method: :delete, data: { confirm: "Are you sure?" } do %>
+    <h2 button type="button" class="btn btn-danger">Delete partner</h2></button>
+  <% end %>
 </div>

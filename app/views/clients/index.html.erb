@@ -1,41 +1,48 @@
 <div class="container-fluid">
   <h1>Clients</h1>
-  <%= link_to new_client_path do %>
-   <div class="form-group pull-right">
-    <%= form_tag partners_path, method: :get do %>
-  <%= text_field_tag :query,
+
+  <div class="form-group pull-right">
+    <%= form_tag clients_path, method: :get do %>
+    <%= text_field_tag :query,
     params[:query],
-    class: "form-control",
-    placeholder: "Find a movie"
-  %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
-  </div>
-  <span class="counter pull-right"></span>
-  <table class="table table-hover table-bordered results">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th class="col-md-5 col-xs-5">Name</th>
-        <th class="col-md-5 col-xs-5">Company</th>
-        <th class="col-md-4 col-xs-4">E-mail</th>
-        <th class="col-md-3 col-xs-3">Status</th>
-      </tr>
-      <tr class="warning no-result">
-        <td colspan="4"><i class="fa fa-warning"></i> No result</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <% @clients.each_with_index do |client, index| %>
-        <% indexplusone = index + 1 %>
-        <th scope="row"><%= indexplusone %></th>
-        <td><%= link_to(client.last_name, client_path(client)) %></td>
-        <td><%= client.company %></td>
-        <td><%= client.email %></td>
-        <td><%= client.status %></td>
-      </tr>
+    class: "mx-sm-3 mb-2",
+      placeholder: "Find a client"
+      %>
+
+
+      <%= submit_tag "Search", class: "btn btn-primary" %>
       <% end %>
-    </tbody>
-  </table>
+      <%= link_to new_client_path do %>
+      <h2 button type="button" class="btn btn-primary m-3">Create new client</h2></button>
+      <% end %>
+    </div>
+    <span class="counter pull-right"></span>
+    <table class="table table-hover table-bordered results">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th class="col-md-5 col-xs-5">Last Name</th>
+          <th class="col-md-5 col-xs-5">First Name</th>
+          <th class="col-md-5 col-xs-5">Company</th>
+          <th class="col-md-4 col-xs-4">E-mail</th>
+          <th class="col-md-3 col-xs-3">Status</th>
+        </tr>
+        <tr class="warning no-result">
+          <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% @clients.each_with_index do |client, index| %>
+          <% indexplusone = index + 1 %>
+          <th scope="row"><%= indexplusone %></th>
+          <td><%= link_to(client.last_name, client_path(client)) %></td>
+          <td><%= client.first_name %></td>
+          <td><%= client.company %></td>
+          <td><%= client.email %></td>
+          <td><%= client.status %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
