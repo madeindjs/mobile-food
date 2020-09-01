@@ -29,7 +29,7 @@
         <% @partners.each_with_index do |partner, index| %>
         <% indexplusone = index + 1 %>
         <th scope="row"><%= indexplusone %></th>
-        <td><%= partner.company_name %></td>
+        <td><%= link_to(partner.company_name, partner_path(partner)) %></td>
         <td><%= partner.first_name %> <%= partner.last_name %></td>
         <td><%= partner.food_type %></td>
         <td><%= partner.address %></td>
