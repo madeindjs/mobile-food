@@ -2,10 +2,12 @@ class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :destroy, :edit, :update]
 
   def index
-    @clients_grid = initialize_grid(Client,
-      order:           'clients.last_name',
-      order_direction: 'desc'
-      )
+    if params[:query].present?
+      sql_query = "first_name ILIKE :query OR last_name ILIKE :query"
+      @clients = Client.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @clients = Client.all
+    end
   end
 
   def new

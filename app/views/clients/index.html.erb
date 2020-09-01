@@ -1,29 +1,41 @@
 <div class="container-fluid">
   <h1>Clients</h1>
   <%= link_to new_client_path do %>
-            <h2 button type="button" class="btn btn-primary m-3">Create new client</h2></button>
-            <% end %>
-
-  <%= grid(@clients_grid) do |g|
-
-  g.column name:  'Name', attribute: 'last_name', filter: false do |client|
-    link_to(client.last_name, client_path(client))
-  end
-
-  g.column name:  'Phone Number', attribute: 'phone_number', filter: false do |client|
-    client.phone_number
-  end
-  g.column name:  'E-mail', attribute: 'email', filter: false do |client|
-    client.email
-  end
-
-g.column  name:  'Status', attribute: 'status', filter: false do |client|
-    client.status
-  end
-
-  g.column  do |client|
-    link_to('Edit', edit_client_path(client))
-  end
-end -%>
-
+   <div class="form-group pull-right">
+    <%= form_tag partners_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a movie"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+  </div>
+  <span class="counter pull-right"></span>
+  <table class="table table-hover table-bordered results">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th class="col-md-5 col-xs-5">Name</th>
+        <th class="col-md-5 col-xs-5">Company</th>
+        <th class="col-md-4 col-xs-4">E-mail</th>
+        <th class="col-md-3 col-xs-3">Status</th>
+      </tr>
+      <tr class="warning no-result">
+        <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @clients.each_with_index do |client, index| %>
+        <% indexplusone = index + 1 %>
+        <th scope="row"><%= indexplusone %></th>
+        <td><%= link_to(client.last_name, client_path(client)) %></td>
+        <td><%= client.company %> <%= partner.last_name %></td>
+        <td><%= client.email %></td>
+        <td><%= client.status %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
   </div>
