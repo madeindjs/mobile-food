@@ -2,11 +2,17 @@ class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :destroy, :edit, :update]
 
   def index
-    @partners = Partner.all
-    @partners_grid = initialize_grid(Partner,
-      order:           'partners.company_name',
-      order_direction: 'desc'
-      )
+
+    if params[:query].present?
+      sql_query = "company_name ILIKE :query OR food_type ILIKE :query"
+      @partners = Partner.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @partners = Partner.all
+    # @partners_grid = initialize_grid(Partner,
+    #   order:           'partners.company_name',
+    #   order_direction: 'desc'
+    #   )
+  end
   end
 
   def new
