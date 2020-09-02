@@ -34,6 +34,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'faker'
 gem 'wice_grid', '~> 4.1', github: 'kreintjes/wice_grid', branch: 'fix/all'
+gem 'kaminari'
 
 group :development, :test do
   gem 'pry-byebug'
