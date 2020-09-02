@@ -35,7 +35,6 @@ gem 'devise'
 gem 'faker'
 gem 'wice_grid', '~> 4.1', github: 'kreintjes/wice_grid', branch: 'fix/all'
 
-
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
