@@ -16,13 +16,10 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>Date</th>
+        <th>Client's name</th>
         <th>City</th>
-        <th>Client_id</th>
+        <th>Date</th>
         <th>Desired food</th>
-      </tr>
-      <tr class="warning no-result">
-        <td colspan="4"><i class="fa fa-warning"></i> No result</td>
       </tr>
     </thead>
     <tbody>
@@ -30,11 +27,10 @@
         <% @bookings.each_with_index do |booking, index| %>
         <% indexplusone = index + 1 %>
         <th scope="row"><%= indexplusone %></th>
-        <td><%= link_to(booking.date, booking_path(booking)) %></td>
+        <td><%= link_to(Client.find(booking.client_id).first_name,booking_path(booking)) %></td>
         <td><%= booking.city %></td>
-        <td><%= Client.find(booking.client_id).first_name %></td>
+        <td><%= booking.date %></td>
         <td><%= booking.food_type %></td>
-
       </tr>
       <% end %>
     </tbody>

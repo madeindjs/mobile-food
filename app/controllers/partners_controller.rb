@@ -2,13 +2,12 @@ class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :destroy, :edit, :update]
 
   def index
-
     if params[:query].present?
       sql_query = "company_name ILIKE :query OR food_type ILIKE :query"
       @partners = Partner.where(sql_query, query: "%#{params[:query]}%")
     else
       @partners = Partner.all
-  end
+    end
   end
 
   def new
@@ -38,7 +37,7 @@ class PartnersController < ApplicationController
   end
 
   def partner_params
-    params.require(:partner).permit(:company_name, :first_name, :last_name, :email, :phone_number)
+    params.require(:partner).permit(:company_name, :first_name, :last_name, :email, :phone_number, :food_type)
   end
 
-  end
+end

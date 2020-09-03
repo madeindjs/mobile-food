@@ -1,5 +1,5 @@
 class Partner < ApplicationRecord
-  validates :company_name, :email,:food_type, presence: true
+  validates :company_name, :email, :food_type, presence: true
   validates :email, uniqueness: true
 
   def gmap_url
