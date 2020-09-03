@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_161924) do
+ActiveRecord::Schema.define(version: 2020_09_03_172655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_09_02_161924) do
     t.bigint "chosen_partner_id", null: false
     t.integer "guest_quantity"
     t.integer "budget_per_guest"
-    t.string "food_type"
+    t.string "food_type", array: true
     t.string "requested_quotes_partners"
     t.boolean "has_electricity"
     t.datetime "created_at", precision: 6, null: false
