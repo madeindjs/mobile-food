@@ -15,7 +15,7 @@ Booking.destroy_all
 
 puts 'Creating 50 fake partners...'
 50.times do
-  partner = Partner.new(
+  partner = Partner.create!(
     food_type: Faker::Restaurant.type,
     company_name: Faker::Restaurant.name,
     first_name: Faker::Name.first_name,
@@ -35,7 +35,7 @@ puts 'Finished!'
 
 puts 'Creating 50 fake clients...'
 50.times do
-  client = Client.new(
+  client = Client.create!(
   first_name: Faker::Name.first_name,
   last_name:Faker::Name.last_name,
   company: Faker::Restaurant.name,
@@ -51,15 +51,15 @@ puts 'Finished!'
 
 puts 'Creating 50 fake bookings...'
   50.times do
-    booking = Booking.new(
+    booking = Booking.create!(
       date: Faker::Time.forward(days: 23, period: :morning),
       city:Faker::Address.city,
       guest_quantity:rand(10..250),
       budget_per_guest:rand(10..50),
       food_type: [Faker::Restaurant.type,Faker::Restaurant.type],
       has_electricity: Faker::Boolean.boolean,
-      chosen_partner_id: Partner.last.id,
-      client_id: Client.last.id
+      chosen_partner_id: Partner.all.sample.id,
+      client_id: Client.all.sample.id
     )
     booking.save!
   end

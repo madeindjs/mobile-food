@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root to: 'clients#index'
   resources :partners
   resources :clients do
-    resources :bookings, only: [:index, :new, :create,:show]
+    resources :bookings, only: [:index, :new, :create,:show,:edit]
   end
-  resources :bookings, only: [:index,:show]
+  resources :bookings, only: [:index,:show,:edit,:destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
