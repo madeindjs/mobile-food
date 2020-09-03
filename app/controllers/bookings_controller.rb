@@ -9,10 +9,10 @@ class BookingsController < ApplicationController
   def index
     if params[:query].present?
       sql_query = "city ILIKE :query OR client_id ILIKE :query"
-      @partners = Booking.where(sql_query, query: "%#{params[:query]}%")
+      @bookings = Booking.where(sql_query, query: "%#{params[:query]}%")
     else
       @bookings = Booking.all
-  end
+    end
   end
 
   def create
@@ -38,7 +38,7 @@ class BookingsController < ApplicationController
     redirect_to bookings_path
   end
 
-   def destroy
+  def destroy
     @booking.destroy
     redirect_to bookings_path
   end

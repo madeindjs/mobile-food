@@ -1,9 +1,5 @@
 <div class="container-fluid">
   <h1>Bookings</h1>
-  <%= link_to new_client_booking_path do %>
-          <br>
-            <h2 button type="button" class="btn btn-primary m-3">Create new booking</h2></button>
-            <% end %>
 
   <div class="form-group pull-right">
     <%= form_tag partners_path, method: :get do %>
@@ -23,7 +19,7 @@
         <th>Date</th>
         <th>City</th>
         <th>Client_id</th>
-        <th>Guest Quantity</th>
+        <th>Desired food</th>
       </tr>
       <tr class="warning no-result">
         <td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -36,7 +32,7 @@
         <th scope="row"><%= indexplusone %></th>
         <td><%= link_to(booking.date, booking_path(booking)) %></td>
         <td><%= booking.city %></td>
-        <td><%= Client.find(booking.client_id).last_name %></td>
+        <td><%= Client.find(booking.client_id).first_name %></td>
         <td><%= booking.food_type %></td>
 
       </tr>

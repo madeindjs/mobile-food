@@ -56,7 +56,7 @@ puts 'Creating 50 fake bookings...'
       city:Faker::Address.city,
       guest_quantity:rand(10..250),
       budget_per_guest:rand(10..50),
-      food_type: Faker::Restaurant.type,
+      food_type: [Faker::Restaurant.type,Faker::Restaurant.type],
       has_electricity: Faker::Boolean.boolean,
       chosen_partner_id: Partner.last.id,
       client_id: Client.last.id
