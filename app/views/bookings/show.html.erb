@@ -2,6 +2,9 @@
 <h1> <%= @booking.client.first_name %> <%= @booking.client.last_name %>'s booking</h1>
 <p><%= @booking.date %> </p>
 <p><%= @booking.city %></p>
+<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="whatsapp://send?text=Bonjour! Seriez-vous disponible le <%= @booking.date %>">Send via whatsapp</a>
+        </div>    
 <%= link_to('Edit', edit_booking_path(@booking)) %>
 <%= link_to booking_path, method: :delete, data: { confirm: "Are you sure?" } do %>
     <h2 button type="button" class="btn btn-danger">Delete booking</h2></button>
