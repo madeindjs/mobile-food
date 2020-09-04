@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only:[:show, :destroy, :edit, :update]
+  before_action :set_booking, only: [:show, :destroy, :edit, :update]
 
   def new
     @booking = Booking.new
@@ -8,7 +8,7 @@ class BookingsController < ApplicationController
 
   def index
     if params[:query].present?
-      sql_query = "city ILIKE :query OR client_id ILIKE :query"
+      sql_query = "city ILIKE :query OR date ILIKE :query"
       @bookings = Booking.where(sql_query, query: "%#{params[:query]}%")
     else
       @bookings = Booking.all
@@ -17,7 +17,8 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    if @booking.save!
+    @client = Client.find(params[:client_id])
+    if @booking.save
       redirect_to clients_path
     else
       flash[:alert] = "Booking rejected"

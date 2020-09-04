@@ -1,4 +1,4 @@
 <div class="container">
-  <h1>Edit booking</h1>
+  <h1> Edit <%= @booking.client.first_name %> <%= @booking.client.last_name %>'s booking</h1>
   <%= render "form", booking: @booking %>
 </div>
