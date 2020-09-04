@@ -27,6 +27,11 @@ class PartnersController < ApplicationController
     end
   end
 
+  def update
+    @partner.update(partner_params)
+    redirect_to partners_path
+  end
+
   def destroy
     @partner.destroy
     redirect_to partners_path

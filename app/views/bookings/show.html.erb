@@ -1,8 +1,15 @@
 <div class="container">
 <h1> <%= @booking.client.first_name %> <%= @booking.client.last_name %>'s booking</h1>
-<p><%= @booking.date %> </p>
-<p><%= @booking.city %></p>
-<p><a href="whatsapp://send?text=Bonjour! Seriez-vous disponible le <%= @booking.date %>">Send via whatsapp</a></p>  
+<p><%= @booking.date.strftime("%d-%m-%Y") %> </p>
+<p>Location: <%= @booking.city %></p>
+<p>Chosen partner: <%= Partner.find(@booking.chosen_partner_id).company_name %></p>
+<p>Desired food types: </p>
+<% @booking.food_type.each do |food_type| %>
+<ul class="badge badge-info"><%= food_type %></ul>
+<% end %>
+
+<p>Guest quantity: <%= @booking.guest_quantity %></p>
+<p><a href="whatsapp://send?text=Bonjour! Seriez-vous disponible le <%= @booking.date.strftime("%d-%m-%Y") %> à <%= @booking.city %> pour <%= @booking.guest_quantity %> invités ? Merci">Send to partner via Whatsapp</a></p>
 <%= link_to('Edit', edit_booking_path(@booking)) %>
 <%= link_to booking_path, method: :delete, data: { confirm: "Are you sure?" } do %>
     <h2 button type="button" class="btn btn-danger">Delete booking</h2></button>
