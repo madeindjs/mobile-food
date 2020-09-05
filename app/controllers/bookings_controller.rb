@@ -4,6 +4,7 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new()
     @client = Client.find(params[:client_id])
+    @food_type = @booking.food_type
   end
 
   def index
@@ -19,6 +20,8 @@ class BookingsController < ApplicationController
     @client = Client.find(params[:client_id])
     @booking = Booking.new(booking_params)
     @booking.client = @client
+    @booking.food_type = []
+    @booking.food_type << @food_type
     if @booking.save
       flash[:alert] = "Booking has been created successfully"
       redirect_to bookings_path
@@ -48,6 +51,7 @@ class BookingsController < ApplicationController
 
   def set_booking
     @booking = Booking.find(params[:id])
+    @food_type = @booking.food_type
   end
 
   def booking_params

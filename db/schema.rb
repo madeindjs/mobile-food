@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2020_09_03_172655) do
   create_table "bookings", force: :cascade do |t|
     t.datetime "date"
     t.string "city"
-    t.bigint "client_id", null: false
-    t.bigint "chosen_partner_id", null: false
+    t.bigint "client_id"
+    t.bigint "chosen_partner_id"
     t.integer "guest_quantity"
     t.integer "budget_per_guest"
     t.string "food_type", array: true
