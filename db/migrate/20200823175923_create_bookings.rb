@@ -3,8 +3,8 @@ class CreateBookings < ActiveRecord::Migration[6.0]
     create_table :bookings do |t|
       t.datetime :date
       t.string :city
-      t.references :client, null: false
-      t.references :chosen_partner, null: false
+      t.references :client, null: true
+      t.references :chosen_partner, null: true
       t.integer :guest_quantity
       t.integer :budget_per_guest
       t.string :food_type

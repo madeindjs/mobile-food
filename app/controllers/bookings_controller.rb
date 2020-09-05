@@ -2,8 +2,9 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :destroy, :edit, :update]
 
   def new
-    @booking = Booking.new
+    @booking = Booking.new()
     @client = Client.find(params[:client_id])
+    @food_type = @booking.food_type
   end
 
   def index
@@ -16,10 +17,14 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
     @client = Client.find(params[:client_id])
+    @booking = Booking.new(booking_params)
+    @booking.client = @client
+    @booking.food_type = []
+    @booking.food_type << @food_type
     if @booking.save
-      redirect_to clients_path
+      flash[:alert] = "Booking has been created successfully"
+      redirect_to bookings_path
     else
       flash[:alert] = "Booking rejected"
       render 'new'
@@ -46,6 +51,7 @@ class BookingsController < ApplicationController
 
   def set_booking
     @booking = Booking.find(params[:id])
+    @food_type = @booking.food_type
   end
 
   def booking_params
