@@ -20,8 +20,7 @@ class BookingsController < ApplicationController
     @client = Client.find(params[:client_id])
     @booking = Booking.new(booking_params)
     @booking.client = @client
-    @booking.food_type = []
-    @booking.food_type << @food_type
+    @booking.food_type = booking_params[:food_type]&.split(', ') || []
     if @booking.save
       flash[:alert] = "Booking has been created successfully"
       redirect_to bookings_path
@@ -40,6 +39,7 @@ class BookingsController < ApplicationController
   end
 
   def update
+    @booking.food_type = booking_params[:food_type]&.split(', ') || []
     @booking.update(booking_params)
     redirect_to bookings_path
   end

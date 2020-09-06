@@ -3,7 +3,7 @@
 <%= f.input :city %>
 <%= f.input :guest_quantity %>
 <%= f.input :has_electricity %>
-<%= f.input :food_type, multiple: true %>
+<%= f.input :food_type %>
 <% if @booking.chosen_partner_id.present? %>
   <%= f.collection_select(:chosen_partner_id, Partner.all, :id, :company_name,{:prompt => Partner.find(booking.chosen_partner_id).company_name, :selected => @chosen_partner_id},{ class: 'form-control' })%>
 <% else %>
