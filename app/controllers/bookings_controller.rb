@@ -55,7 +55,16 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:date, :city, :client_id, :guest_quantity, :food_type, :has_electricity, :chosen_partner_id, :requested_quotes_partners)
+    params.require(:booking).permit(
+      :date,
+      :city,
+      :client_id,
+      :guest_quantity,
+      :has_electricity,
+      :chosen_partner_id,
+      :requested_quotes_partners,
+      food_type: []
+      )
   end
 end
 
