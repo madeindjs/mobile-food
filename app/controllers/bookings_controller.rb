@@ -20,6 +20,7 @@ class BookingsController < ApplicationController
     @client = Client.find(params[:client_id])
     @booking = Booking.new(booking_params)
     @booking.client = @client
+    @food_type = @booking.food_type
     @booking.food_type = []
     @booking.food_type << @food_type
     if @booking.save

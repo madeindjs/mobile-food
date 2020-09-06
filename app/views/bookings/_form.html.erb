@@ -1,11 +1,15 @@
 <%= simple_form_for [@client,@booking] do |f| %>
 <%= f.input :date %>
 <%= f.input :city %>
+<% if @food_type.present? %>
+  <% @food_type.each do |a| %>
+    <%= f.input :food_type, :value => a %>
+    <% end %>
+<% else %>
+    <%= f.input :food_type %>
+<% end %>
 <%= f.input :guest_quantity %>
 <%= f.input :has_electricity %>
-<% @booking.food_type.each do |a| %>
-  <%= f.input :food_type, :multiple => true, :value => a %>
-<% end %>
 <% if @booking.chosen_partner_id.present? %>
   <%= f.collection_select(:chosen_partner_id, Partner.all, :id, :company_name,{:prompt => Partner.find(booking.chosen_partner_id).company_name, :selected => @chosen_partner_id},{ class: 'form-control' })%>
 <% else %>
@@ -13,3 +17,7 @@
 <% end %>
 <%= f.submit %>
 <% end %>
+
+
+
+
